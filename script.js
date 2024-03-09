@@ -37,7 +37,7 @@ function displayOperators(value) {
 
 //displaying dots
 function displayDots(value) {
-	if (output.length === 0) {
+	if (output.length === 0 || typeof output[output.length - 1] === "string") {
 		dotsCount += 0
 	} else {
 		dotsCount ++
@@ -77,15 +77,12 @@ function equal() {
 		} else {continue}
 	}
 
+	console.log(secondNumber)
 	let firstNumberCombined = firstNumber.join('')
-	console.log(firstNumberCombined)
 	let secondNumberCombined = secondNumber.join('')
 
 	number1 = parseFloat(firstNumberCombined.replace(/\s/g, ''))
-	console.log(number1)
 	number2 = parseFloat(secondNumberCombined.replace(/\s/g, ''))
-
-	console.log(number1)
 
 	if (operator === ' / ') {
 		result = number1 / number2
