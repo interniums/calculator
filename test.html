@@ -34,6 +34,9 @@
 	<button onclick="two()">2</button>
 	<button onclick="add()">+</button>
 	<button onclick="equal()">=</button>
+	<button onclick="dot()">.</button>
+	<button onclick="multiply()">*</button>
+
 	<script>
 		let firstNumber = [];
 		let secondNumber = [];
@@ -44,13 +47,17 @@
 		function display(value) {
 			const display = document.getElementById("span")
 			output.push(value)
+			if (output.length > 22) {
+				const currentFontSize = parseFloat(window.getComputedStyle(display).fontSize)
+				display.style.fontSize = (currentFontSize - 2) + 'px'
+			}
 			display.textContent = output.join('')
 		}
 
 		function equal() {
 
 			for (let i = 0; i < output.length; i++) {
-				if (isNaN(output[i])) {
+				if (isNaN(output[i]) && output[i] !== '.') {
 					getNumbers(i)
 					function getNumbers(value) {
 						operator = output[value]
@@ -75,9 +82,13 @@
 
 
 			if (operator === ' + ') {
-				result = parseInt(number1) + parseInt(number2)
+				result = parseFloat(number1) + parseFloat(number2)
 				output = []	
-				display(result)
+				display(result.toFixed(2))
+			} else if (operator === ' * ') {
+				result = parseFloat(number1) * parseFloat(number2)
+				output = []	
+				display(result.toFixed(2))
 			}
 		}
 
@@ -95,6 +106,13 @@
 			display(' + ')
 		}	
 
+		function dot() {
+			display('.')
+		}	
+
+		function multiply() {
+			display(' * ')
+		}	
 	</script>
 </body>
 </html>
